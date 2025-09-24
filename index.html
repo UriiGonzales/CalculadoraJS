@@ -2,65 +2,67 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculadora Básica</title>
     <link rel="stylesheet" href="styles.css">
-    
 </head>
 <body>
-    <div class="calculadora">
-        <h2>Calculadora Sencilla</h2>
-        <input type="number" id="num1" placeholder="Primer número">
-        <select id="operacion">
-            <option value="+">Suma (+)</option>
-            <option value="-">Resta (-)</option>
-            <option value="*">Multiplicación (*)</option>
-            <option value="/">División (/)</option>
-        </select>
-        <input type="number" id="num2" placeholder="Segundo número">
-        <button onclick="calcular()">Calcular</button>
-        <div id="resultado"></div>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('(')">(</button>
+            <button onclick="appendToDisplay(')')">)</button>
+            <button class="operator" onclick="appendToDisplay('/')">÷</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('*')">×</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('-')">−</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="equal" onclick="calculateResult()">=</button>
+        </div>
     </div>
-
     <script>
-        function calcularOperacion(a, b, operacion) {
-            let resultado;
-            switch (operacion) {
-                case '+':
-                    resultado = a + b;
-                    break;
-                case '-':
-                    resultado = a - b;
-                    break;
-                case '*':
-                    resultado = a * b;
-                    break;
-                case '/':
-                    if (b === 0) {
-                        resultado = 'Error: División por cero';
-                    } else {
-                        resultado = a / b;
-                    }
-                    break;
-                default:
-                    resultado = 'Operación no válida';
-            }
-            return resultado;
+        const display = document.getElementById('display');
+        let currentInput = '0';
+
+        function updateDisplay() {
+            display.textContent = currentInput;
         }
 
-        function calcular() {
-            const num1 = parseFloat(document.getElementById('num1').value);
-            const num2 = parseFloat(document.getElementById('num2').value);
-            const operacion = document.getElementById('operacion').value;
-
-            if (isNaN(num1) || isNaN(num2)) {
-                document.getElementById('resultado').textContent = 'Por favor, ingresa ambos números.';
-                console.log('Entrada inválida');
-                return;
+        function appendToDisplay(value) {
+            if (currentInput === '0' && value !== '.') {
+                currentInput = value;
+            } else {
+                currentInput += value;
             }
+            updateDisplay();
+        }
 
-            const resultado = calcularOperacion(num1, num2, operacion);
-            document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
-            console.log(`Resultado: ${resultado}`);
+        function clearDisplay() {
+            currentInput = '0';
+            updateDisplay();
+        }
+
+        function calculateResult() {
+            try {
+                // eslint-disable-next-line no-eval
+                let result = eval(currentInput);
+                if (result === undefined) result = '0';
+                currentInput = result.toString();
+            } catch {
+                currentInput = 'Error';
+            }
+            updateDisplay();
         }
     </script>
 </body>
