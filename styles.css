@@ -1,13 +1,12 @@
  body {
-            background: linear-gradient(135deg, #667eea, #4ba261);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Segoe UI', Arial, sans-serif;
+            
         }
         .calculator {
-            background: #fff;
             border-radius: 18px;
             box-shadow: 0 8px 32px rgba(44, 62, 80, 0.2);
             padding: 32px 24px 24px 24px;
@@ -16,24 +15,25 @@
             flex-direction: column;
             gap: 16px;
             animation: fadeIn 0.5s ease-in-out;
+            background-image: image-set(
+                url('bruja-veron.jpg') 1x
+            );
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
 
         }
-        .display {
-            background: #22223b;
-            color: #f2e9e4;
-            font-size: 2.2rem;
-            border-radius: 10px;
-            padding: 18px 12px;
-            text-align: right;
-            letter-spacing: 1px;
-            min-height: 48px;
-            margin-bottom: 8px;
-            overflow-x: auto;
-            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
-            font-weight: 600;
-            user-select: none;
-            font-family: 'Courier New', Courier, monospace;
 
+        .display {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 2rem;
+            text-align: right;
+            color: #22223b;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+            user-select: none;
+            min-height: 60px;
         }
         .buttons {
             display: grid;
@@ -59,7 +59,7 @@
             color: #22223b;
         }
         button.equal {
-            background: #764ba2;
+            background: #4ba24f;
             color: #fff;
             grid-column: span 2;
         }
@@ -69,4 +69,23 @@
         }
         button:active {
             background: #bfc0c0;
+        }
+        .background-image {
+            position: full;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }

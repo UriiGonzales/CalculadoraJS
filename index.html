@@ -7,25 +7,35 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- El iframe de YouTube debe tener el atributo 'allow' con 'autoplay' y el navegador debe permitirlo. 
+    Algunos navegadores bloquean el autoplay si el video tiene sonido. 
+    No se puede garantizar el autoplay en todos los casos, pero este es el método correcto: -->
+   <iframe src="https://www.youtube.com/embed/Ey09OZ_XGBE$autoplay=1$mute=1$loop=1$controls=0$showinfo=0&modestbranding=1" frameborder="0" allow="autoplay,fullscreen" allowfullscreen></iframe>
     <div class="calculator">
+        <img src="estudiantes-de-la-plata-new-229134.png" alt="">
         <div class="display" id="display">0</div>
         <div class="buttons">
+
             <button class="clear" onclick="clearDisplay()">C</button>
             <button onclick="appendToDisplay('(')">(</button>
             <button onclick="appendToDisplay(')')">)</button>
             <button class="operator" onclick="appendToDisplay('/')">÷</button>
+
             <button onclick="appendToDisplay('7')">7</button>
             <button onclick="appendToDisplay('8')">8</button>
             <button onclick="appendToDisplay('9')">9</button>
             <button class="operator" onclick="appendToDisplay('*')">×</button>
+
             <button onclick="appendToDisplay('4')">4</button>
             <button onclick="appendToDisplay('5')">5</button>
             <button onclick="appendToDisplay('6')">6</button>
             <button class="operator" onclick="appendToDisplay('-')">−</button>
+
             <button onclick="appendToDisplay('1')">1</button>
             <button onclick="appendToDisplay('2')">2</button>
             <button onclick="appendToDisplay('3')">3</button>
             <button class="operator" onclick="appendToDisplay('+')">+</button>
+
             <button onclick="appendToDisplay('0')">0</button>
             <button onclick="appendToDisplay('.')">.</button>
             <button class="equal" onclick="calculateResult()">=</button>
@@ -55,7 +65,6 @@
 
         function calculateResult() {
             try {
-                // eslint-disable-next-line no-eval
                 let result = eval(currentInput);
                 if (result === undefined) result = '0';
                 currentInput = result.toString();
